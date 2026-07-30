@@ -65,6 +65,13 @@ export default function ponytailExtension(pi) {
     const c = ctx || lastCtx;
     if (!c?.ui?.setStatus || !c.ui.theme?.fg) return;
     const theme = c.ui.theme;
+
+    // Env opt-out: PONYTAIL_BADGE=off hides the status badge without disabling the mode
+    if (currentMode !== "off" && process.env.PONYTAIL_BADGE === "off") {
+      c.ui.setStatus("ponytail", "");
+      return;
+    }
+
     if (currentMode === "off") {
       c.ui.setStatus("ponytail", "");
       return;
