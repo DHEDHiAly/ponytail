@@ -3,7 +3,7 @@ const path = require('path');
 const { getClaudeDir } = require('./ponytail-config');
 
 const STATE_FILE = '.ponytail-active';
-const isCopilot = Boolean(process.env.COPILOT_PLUGIN_DATA);
+const isCopilot = Boolean(process.env.COPILOT_PLUGIN_DATA) || Boolean(process.env.CLAUDE_PLUGIN_ROOT);
 const isCodex = !isCopilot && Boolean(process.env.PLUGIN_DATA);
 
 let stateDir = getClaudeDir();
